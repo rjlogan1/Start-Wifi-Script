@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+# Sets wlan0 into the down postion
+sudo ip link set wlan0 down
+
+# Attemps to start the given wifi profile and tests if successful. Replaces error msg with custom one.
+if sudo netctl start $1 2>/dev/null
+then
+	echo Wifi Started on $1.
+else
+	echo Wifi Failed to start please check \'sudo journalctl -xe\' for more info.
+fi
+
